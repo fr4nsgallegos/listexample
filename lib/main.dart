@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:listexample/person_model.dart';
 
 void main() {
   runApp(
@@ -17,6 +18,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //instanciando personas
+  Person pepe =
+      Person(name: "Pepe", address: "Av pepe123", phone: "1234456789");
+  Person matias =
+      Person(name: "Mathias", address: "avlima 123", phone: "789456132");
+  Person maria =
+      Person(name: "Maria", address: "AV 123 456", phone: "987654321");
+  Person juana = Person(name: "Juana", address: "AV LKJ", phone: "00000000");
+
+  //Lista de personas a partir de nuestra clase person
+  List<Person> peopleClassList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    peopleClassList.add(pepe);
+    peopleClassList.add(matias);
+    peopleClassList.add(maria);
+    peopleClassList.add(juana);
+  }
+
   //lista con nombres
   List<String> names = [
     "Frans",
@@ -60,7 +82,10 @@ class _MyAppState extends State<MyApp> {
           title: Text("My classes"),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                // peopleClassList = peopleClassList;
+                setState(() {});
+              },
               icon: Icon(Icons.add),
             ),
           ],
@@ -104,15 +129,15 @@ class _MyAppState extends State<MyApp> {
                 //     .map((e) => Text(e))
                 //     .toList(), //Método para agregar lista de nombres a partir del mapeo de la lista
                 // ...buildNames(), //funcion que me agrega la lista de nombres con widgets TEXT
-                ...peopleList
+                ...peopleClassList
                     .map(
-                      (person) => ListTile(
+                      (element) => ListTile(
                         leading: CircleAvatar(
-                          child: Text(person["name"][0]),
+                          child: Text(element.name[0]),
                         ),
-                        title: Text(person["name"]),
-                        subtitle: Text(person["address"]),
-                        trailing: Text(person["phone"]),
+                        title: Text(element.name),
+                        subtitle: Text(element.address),
+                        trailing: Text(element.phone),
                       ),
                     )
                     .toList(),
