@@ -11,7 +11,12 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   //lista con nombres
   List<String> names = [
     "Frans",
@@ -71,7 +76,25 @@ class MyApp extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Text("LOS NOMBRES"),
+                Row(
+                  // mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("LOS NOMBRES"),
+                    IconButton(
+                        onPressed: () {
+                          peopleList.add(
+                            {
+                              "name": "Pedro",
+                              "address": "av larco 123",
+                              "phone": "12345798",
+                            },
+                          );
+                          setState(() {});
+                        },
+                        icon: Icon(Icons.add_box))
+                  ],
+                ),
                 Divider(
                   height: 20,
                   thickness: 3,
