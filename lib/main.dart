@@ -12,8 +12,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List<String> names = ["Frans", "Pedro", "Juan"];
+  //lista con nombres
+  List<String> names = [
+    "Frans",
+    "Pedro",
+    "Juan",
+  ];
 
+  //Función que me devuelve una lista con widgets TEXT(<cada nombre>)
   List<Widget> buildNames() {
     List<Widget> tmp = [];
     names.forEach((String mandarina) {
@@ -22,25 +28,64 @@ class MyApp extends StatelessWidget {
     return tmp;
   }
 
+  //Lista de personas, cada persona es un mapa
+  List<Map<String, dynamic>> peopleList = [
+    {
+      "name": "Adrian",
+      "address": "av123 123",
+      "phone": "123456789",
+    },
+    {
+      "name": "Eddy",
+      "address": "Av los arces 456",
+      "phone": "987654321",
+    },
+    {
+      "name": "Pedro",
+      "address": "av 7 los guiosos",
+      "phone": "1111111",
+    }
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text("My classes"),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.add),
+            ),
+          ],
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.menu,
+            ),
+          ),
+        ),
         body: Center(
           child: Column(
             children: [
-              Column(
-                children: buildNames(),
-              ),
-              // buildNames()
               Text("LOS NOMBRES"),
               Divider(
                 height: 20,
-                thickness: 5,
-                color: Colors.blue,
+                thickness: 3,
+                color: const Color.fromRGBO(33, 150, 243, 1),
               ),
-              ...buildNames(),
+              // ...names
+              //     .map((e) => Text(e))
+              //     .toList(), //Método para agregar lista de nombres a partir del mapeo de la lista
+              // ...buildNames(), //funcion que me agrega la lista de nombres con widgets TEXT
+              ...peopleList
+                  .map(
+                    (person) => Text(
+                      person["name"],
+                    ),
+                  )
+                  .toList(),
               Container(
                 width: 50,
                 height: 50,
