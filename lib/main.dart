@@ -66,33 +66,35 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        body: Center(
-          child: Column(
-            children: [
-              Text("LOS NOMBRES"),
-              Divider(
-                height: 20,
-                thickness: 3,
-                color: const Color.fromRGBO(33, 150, 243, 1),
-              ),
-              // ...names
-              //     .map((e) => Text(e))
-              //     .toList(), //Método para agregar lista de nombres a partir del mapeo de la lista
-              // ...buildNames(), //funcion que me agrega la lista de nombres con widgets TEXT
-              ...peopleList
-                  .map(
-                    (person) => Text(
-                      person["name"],
-                    ),
-                  )
-                  .toList(),
-              Container(
-                width: 50,
-                height: 50,
-                color: Colors.red,
-              )
-              // for(int i =0)
-            ],
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              children: [
+                Text("LOS NOMBRES"),
+                Divider(
+                  height: 20,
+                  thickness: 3,
+                  color: const Color.fromRGBO(33, 150, 243, 1),
+                ),
+                // ...names
+                //     .map((e) => Text(e))
+                //     .toList(), //Método para agregar lista de nombres a partir del mapeo de la lista
+                // ...buildNames(), //funcion que me agrega la lista de nombres con widgets TEXT
+                ...peopleList
+                    .map(
+                      (person) => ListTile(
+                        leading: CircleAvatar(
+                          child: Text(person["name"][0]),
+                        ),
+                        title: Text(person["name"]),
+                        subtitle: Text(person["address"]),
+                        trailing: Text(person["phone"]),
+                      ),
+                    )
+                    .toList(),
+              ],
+            ),
           ),
         ),
       ),
