@@ -185,8 +185,11 @@ class _HomeState extends State<Home> {
                                             Icons.delete,
                                           ),
                                           onPressed: () {
-                                            //REMOVER POR ELEMENTO
-                                            tecsup.people.remove(element);
+                                            //REMOVER POR ELEMENTO DEPENDIENDO DONDE HAGA CLIC
+                                            i.people.remove(element);
+
+                                            //REMOVER POR ELEMENTO de MI CLASE TECSUP
+                                            // tecsup.people.remove(element);
 
                                             //ELIMINAR EN CIERTA POSICIÓN
                                             // tecsup.people.removeAt(0);
