@@ -121,14 +121,15 @@ class _MyAppState extends State<MyApp> {
                     Text("LOS NOMBRES"),
                     IconButton(
                         onPressed: () {
-                          // peopleList.add(
-                          //   {
-                          //     "name": "Pedro",
-                          //     "address": "av larco 123",
-                          //     "phone": "12345798",
-                          //   },
-                          // );
-                          // setState(() {});
+                          //Agregando una persona a la Lista de personas de Tecsup
+                          tecsup.people.add(
+                            Person(
+                              name: "Luana",
+                              address: "Cale Juares 123",
+                              phone: "9856513541",
+                            ),
+                          );
+                          setState(() {});
                         },
                         icon: Icon(Icons.add_box))
                   ],
