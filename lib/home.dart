@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: Column(
+            child: ListView(
               children: [
                 Row(
                   // mainAxisSize: MainAxisSize.max,
@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
 
                 ...tecsup.people
                     .map(
-                      (element) => ListTile(
+                      (Person element) => ListTile(
                         leading: CircleAvatar(
                           child: Text(element.name[0]),
                         ),
@@ -151,7 +151,10 @@ class _HomeState extends State<Home> {
                                 Icons.edit,
                               ),
                               onPressed: () {
-                                print("editando");
+                                element.name = "Daniel";
+                                element.address = "av cayma 987";
+                                element.phone = "00000000";
+                                setState(() {});
                               },
                             ),
                             IconButton(
