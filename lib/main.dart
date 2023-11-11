@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:listexample/institution_model.dart';
 import 'package:listexample/person_model.dart';
 
 void main() {
@@ -18,6 +19,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //instanciando una institución
+  Institution tecsup = Institution(
+    name: "Tecsup",
+    people: [],
+  );
+
   //instanciando personas
   Person pepe =
       Person(name: "Pepe", address: "Av pepe123", phone: "1234456789");
@@ -33,46 +40,52 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    //usando una lista
     peopleClassList.add(pepe);
     peopleClassList.add(matias);
     peopleClassList.add(maria);
     peopleClassList.add(juana);
+
+    //usando el atriburo people de la clase tecsup
+    tecsup.people.add(pepe);
+    tecsup.people.add(matias);
   }
 
-  //lista con nombres
-  List<String> names = [
-    "Frans",
-    "Pedro",
-    "Juan",
-  ];
+  // //lista con nombres
 
-  //Función que me devuelve una lista con widgets TEXT(<cada nombre>)
-  List<Widget> buildNames() {
-    List<Widget> tmp = [];
-    names.forEach((String mandarina) {
-      tmp.add(Text(mandarina));
-    });
-    return tmp;
-  }
+  // List<String> names = [
+  //   "Frans",
+  //   "Pedro",
+  //   "Juan",
+  // ];
 
-  //Lista de personas, cada persona es un mapa
-  List<Map<String, dynamic>> peopleList = [
-    {
-      "name": "Adrian",
-      "address": "av123 123",
-      "phone": "123456789",
-    },
-    {
-      "name": "Eddy",
-      "address": "Av los arces 456",
-      "phone": "987654321",
-    },
-    {
-      "name": "Pedro",
-      "address": "av 7 los guiosos",
-      "phone": "1111111",
-    }
-  ];
+  // //Función que me devuelve una lista con widgets TEXT(<cada nombre>)
+  // List<Widget> buildNames() {
+  //   List<Widget> tmp = [];
+  //   names.forEach((String mandarina) {
+  //     tmp.add(Text(mandarina));
+  //   });
+  //   return tmp;
+  // }
+
+  // //Lista de personas, cada persona es un mapa
+  // List<Map<String, dynamic>> peopleList = [
+  //   {
+  //     "name": "Adrian",
+  //     "address": "av123 123",
+  //     "phone": "123456789",
+  //   },
+  //   {
+  //     "name": "Eddy",
+  //     "address": "Av los arces 456",
+  //     "phone": "987654321",
+  //   },
+  //   {
+  //     "name": "Pedro",
+  //     "address": "av 7 los guiosos",
+  //     "phone": "1111111",
+  //   }
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -108,14 +121,14 @@ class _MyAppState extends State<MyApp> {
                     Text("LOS NOMBRES"),
                     IconButton(
                         onPressed: () {
-                          peopleList.add(
-                            {
-                              "name": "Pedro",
-                              "address": "av larco 123",
-                              "phone": "12345798",
-                            },
-                          );
-                          setState(() {});
+                          // peopleList.add(
+                          //   {
+                          //     "name": "Pedro",
+                          //     "address": "av larco 123",
+                          //     "phone": "12345798",
+                          //   },
+                          // );
+                          // setState(() {});
                         },
                         icon: Icon(Icons.add_box))
                   ],
@@ -129,7 +142,8 @@ class _MyAppState extends State<MyApp> {
                 //     .map((e) => Text(e))
                 //     .toList(), //Método para agregar lista de nombres a partir del mapeo de la lista
                 // ...buildNames(), //funcion que me agrega la lista de nombres con widgets TEXT
-                ...peopleClassList
+
+                ...tecsup.people
                     .map(
                       (element) => ListTile(
                         leading: CircleAvatar(
