@@ -26,6 +26,9 @@ class _HomeState extends State<Home> {
   //Lista de personas a partir de nuestra clase person
   List<Person> peopleClassList = [];
 
+  //Lista de instituciones
+  List<Institution> institutions = [];
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +41,9 @@ class _HomeState extends State<Home> {
     //usando el atriburo people de la clase tecsup
     tecsup.people.add(pepe);
     tecsup.people.add(matias);
+
+    //Iniciar pantalla agregando un elemento a mi lista de instituciones
+    institutions.add(tecsup);
   }
 
   // //lista con nombres
@@ -85,7 +91,11 @@ class _HomeState extends State<Home> {
           actions: [
             IconButton(
               onPressed: () {
-                // peopleClassList = peopleClassList;
+                Institution utp = Institution(
+                  name: "UCV",
+                  people: [],
+                );
+                institutions.add(utp);
                 setState(() {});
               },
               icon: Icon(Icons.add),
@@ -105,90 +115,97 @@ class _HomeState extends State<Home> {
           child: Center(
             child: ListView(
               children: [
-                Row(
-                  // mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("LOS NOMBRES"),
-                    IconButton(
-                        onPressed: () {
-                          //Agregando una persona a la Lista de personas de Tecsup
-                          tecsup.people.add(
-                            Person(
-                              name: "Luana",
-                              address: "Cale Juares 123",
-                              phone: "9856513541",
-                            ),
-                          );
-                          setState(() {});
-                        },
-                        icon: Icon(Icons.add_box))
-                  ],
-                ),
-                Divider(
-                  height: 20,
-                  thickness: 3,
-                  color: Color(0xffD44118),
-                ),
-                // ...names
-                //     .map((e) => Text(e))
-                //     .toList(), //Método para agregar lista de nombres a partir del mapeo de la lista
-                // ...buildNames(), //funcion que me agrega la lista de nombres con widgets TEXT
-
-                ...tecsup.people
-                    .map(
-                      (Person element) => ListTile(
-                        leading: CircleAvatar(
-                          child: Text(element.name[0]),
-                        ),
-                        title: Text(element.name),
-                        subtitle: Text(element.address),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
+                ...institutions
+                    .map((i) => Column(
                           children: [
-                            IconButton(
-                              icon: Icon(
-                                Icons.edit,
-                              ),
-                              onPressed: () {
-                                //NO FUNCIONA PORQUE ESTOY REINSTANCIANDO UN
-                                //OBJETO PERSONA Y DEBEÉRIA REINSTEARLO PARA QUE
-                                // SE REFLEJEN LOS CAMBIOS
-                                // element = Person(
-                                //     name: "asdads",
-                                //     address: "asdas",
-                                //     phone: "65654654");
-
-                                //FORMA CORRECTA
-                                element.name = "Daniel";
-                                element.address = "av cayma 987";
-                                element.phone = "00000000";
-                                setState(() {});
-                              },
+                            Row(
+                              // mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(i.name),
+                                IconButton(
+                                  onPressed: () {
+                                    //Agregando una persona a la Lista de personas de Tecsup
+                                    i.people.add(
+                                      Person(
+                                        name: "Luana",
+                                        address: "Cale Juares 123",
+                                        phone: "9856513541",
+                                      ),
+                                    );
+                                    setState(() {});
+                                  },
+                                  icon: Icon(Icons.add_box),
+                                )
+                              ],
                             ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.delete,
-                              ),
-                              onPressed: () {
-                                //REMOVER POR ELEMENTO
-                                tecsup.people.remove(element);
-
-                                //ELIMINAR EN CIERTA POSICIÓN
-                                // tecsup.people.removeAt(0);
-
-                                //ELIMINAR EN UN RANGO
-                                // tecsup.people.removeRange(0, 2);
-
-                                // ELIMINAR EL ÚLTIMO
-                                // tecsup.people.removeLast();
-                                setState(() {});
-                              },
+                            Divider(
+                              height: 20,
+                              thickness: 3,
+                              color: Color(0xffD44118),
                             ),
+                            // ...names
+                            //     .map((e) => Text(e))
+                            //     .toList(), //Método para agregar lista de nombres a partir del mapeo de la lista
+                            // ...buildNames(), //funcion que me agrega la lista de nombres con widgets TEXT
+
+                            ...i.people
+                                .map(
+                                  (Person element) => ListTile(
+                                    leading: CircleAvatar(
+                                      child: Text(element.name[0]),
+                                    ),
+                                    title: Text(element.name),
+                                    subtitle: Text(element.address),
+                                    trailing: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.edit,
+                                          ),
+                                          onPressed: () {
+                                            //NO FUNCIONA PORQUE ESTOY REINSTANCIANDO UN
+                                            //OBJETO PERSONA Y DEBEÉRIA REINSTEARLO PARA QUE
+                                            // SE REFLEJEN LOS CAMBIOS
+                                            // element = Person(
+                                            //     name: "asdads",
+                                            //     address: "asdas",
+                                            //     phone: "65654654");
+
+                                            //FORMA CORRECTA
+                                            element.name = "Daniel";
+                                            element.address = "av cayma 987";
+                                            element.phone = "00000000";
+                                            setState(() {});
+                                          },
+                                        ),
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.delete,
+                                          ),
+                                          onPressed: () {
+                                            //REMOVER POR ELEMENTO
+                                            tecsup.people.remove(element);
+
+                                            //ELIMINAR EN CIERTA POSICIÓN
+                                            // tecsup.people.removeAt(0);
+
+                                            //ELIMINAR EN UN RANGO
+                                            // tecsup.people.removeRange(0, 2);
+
+                                            // ELIMINAR EL ÚLTIMO
+                                            // tecsup.people.removeLast();
+                                            setState(() {});
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                                .toList(),
                           ],
-                        ),
-                      ),
-                    )
+                        ))
                     .toList(),
               ],
             ),
