@@ -151,6 +151,15 @@ class _HomeState extends State<Home> {
                                 Icons.edit,
                               ),
                               onPressed: () {
+                                //NO FUNCIONA PORQUE ESTOY REINSTANCIANDO UN
+                                //OBJETO PERSONA Y DEBEÉRIA REINSTEARLO PARA QUE
+                                // SE REFLEJEN LOS CAMBIOS
+                                // element = Person(
+                                //     name: "asdads",
+                                //     address: "asdas",
+                                //     phone: "65654654");
+
+                                //FORMA CORRECTA
                                 element.name = "Daniel";
                                 element.address = "av cayma 987";
                                 element.phone = "00000000";
